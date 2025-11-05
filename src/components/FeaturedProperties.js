@@ -68,7 +68,7 @@ export default function FeaturedProperties() {
     {
       id: 4,
       image: '/sdimg7.jpeg',
-      title: 'Rosewood Manor',
+      title: 'Zen',
       price: '$200,000',
       priceType: '',
       location: 'East Legon Hills, Katamanso. Accra-Ghana.',
