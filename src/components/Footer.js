@@ -98,8 +98,7 @@ export default function Footer() {
               <span className="text-2xl font-bold">Swift Development</span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Your trusted partner in finding the perfect property. We specialize in residential, 
-              commercial, and luxury real estate across Nigeria.
+              Your trusted partner in building exceptional properties. We specialize in crafting residential and luxury developments across Ghana.
             </p>
             
             {/* Contact Info */}

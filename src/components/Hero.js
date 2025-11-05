@@ -93,10 +93,12 @@ export default function Hero({ showHero }) {
           {/* Left Side - Main Content */}
           <div>
             {/* Main Heading */}
-            <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight transition-all duration-700 ${
+            <h1 className={`text-5xl md:text-3xl lg:text-6xl font-bold text-white mb-8 leading-tight transition-all duration-700 ${
               contentStage === 'hidden' ? 'opacity-0 translate-y-10' : 'opacity-100 translate-y-0'
             }`}>
-              Own Your <span className="bg-yellow-400/80 text-black px-3 rounded-lg">WORLD</span> , ONE PROPERTY AT A TIME
+              Own Your <span className="bg-yellow-400/80 text-black px-1 rounded-lg">WORLD,</span><br />
+              ONE PROPERTY<br />
+              <span className="text-white-400">AT A TIME</span>
             </h1>
           </div>
 
