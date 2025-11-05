@@ -114,7 +114,7 @@ export default function FeaturedProperties() {
   const isComingSoon = filteredProperties.length === 0 && activeFilter !== 'All Type';
 
   return (
-    <section ref={sectionRef} id="properties" className="py-20 bg-white">
+    <section ref={sectionRef} id="properties" className="py-5 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12">

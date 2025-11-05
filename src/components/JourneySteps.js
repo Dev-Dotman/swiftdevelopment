@@ -27,6 +27,30 @@ export default function JourneySteps() {
     };
   }, []);
 
+  const handleSmoothScroll = (e, href) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      const navbarHeight = 80;
+      const targetPosition = targetElement.offsetTop - navbarHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const quickLinks = [
+    { name: 'About Us', href: '#about' },
+    { name: 'Properties', href: '#properties' },
+    { name: 'Our Agents', href: '#agents' },
+    { name: 'Blog', href: '#blog' },
+    { name: 'Contact', href: '#contact' }
+  ];
+
   const steps = [
     {
       number: '1',
@@ -41,11 +65,6 @@ export default function JourneySteps() {
     {
       number: '3',
       title: 'Hassle free purchase',
-      active: false
-    },
-    {
-      number: '4',
-      title: 'Buy back guarantee',
       active: false
     }
   ];
@@ -117,9 +136,10 @@ export default function JourneySteps() {
                 We are committed to delivering enjoyable real estate journey
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Discover a range of exceptional homes and investment opportunities designed to meet your lifestyle and business goals.
+                Discover a range of exceptional homes and investment opportunities designed to meet your lifestyle and investment goals.
               </p>
-              <button className="bg-black hover:bg-yellow-400 text-white hover:text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
+              <button className="bg-black hover:bg-yellow-400 text-white hover:text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+              onClick={(e) => handleSmoothScroll(e, '#properties')}>
                 Explore All Property
               </button>
             </div>

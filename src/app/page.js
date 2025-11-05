@@ -10,6 +10,7 @@ import OurAgents from '@/components/OurAgents';
 import PropertyCategories from '@/components/PropertyCategories';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import Testimonials from '@/components/Testimonials';
+import DevelopmentTeam from '@/components/DevelopmentTeam';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 
@@ -35,10 +36,8 @@ export default function Home() {
       <AboutUs />
       <FeaturedProperties />
       <JourneySteps />
-      {/* <OurAgents /> */}
-      {/* <WhyChooseUs /> */}
-      <Testimonials />
-      {/* <CTASection /> */}
+      <DevelopmentTeam />
+      {/* <Testimonials /> */}
       <Footer />
     </div>
   );
