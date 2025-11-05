@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Image from "next/image";
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -16,29 +16,21 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   const [showHero, setShowHero] = useState(false);
-  const animationCompleted = useRef(false);
 
-  const handleNavbarAnimationComplete = () => {
-    if (animationCompleted.current) return;
-    
-    animationCompleted.current = true;
-    
-    // Show hero after navbar animation completes
-    setTimeout(() => {
-      setShowHero(true);
-    }, 100);
+  const handleAnimationComplete = () => {
+    setShowHero(true);
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 font-sans">
-      <Navbar onAnimationComplete={handleNavbarAnimationComplete} />
+    <main className="min-h-screen bg-white">
+      <Navbar onAnimationComplete={handleAnimationComplete} skipAnimation={false} />
+      
       <Hero showHero={showHero} />
       <AboutUs />
       <FeaturedProperties />
       <JourneySteps />
       <DevelopmentTeam />
-      {/* <Testimonials /> */}
       <Footer />
-    </div>
+    </main>
   );
 }

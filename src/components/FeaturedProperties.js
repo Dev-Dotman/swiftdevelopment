@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import propertiesData from '@/data/properties.json';
 
 export default function FeaturedProperties() {
   const [activeFilter, setActiveFilter] = useState('All Type');
@@ -28,80 +30,23 @@ export default function FeaturedProperties() {
     };
   }, []);
 
-  const properties = [
-    {
-      id: 1,
-      image: '/sdimg5.jpeg',
-      title: 'Rosewood',
-      price: '$200,000',
-      priceType: '',
-      location: 'East Legon Hills, Katamanso. Accra-Ghana.',
-      bedrooms: 4,
-      bathrooms: 4,
-      area: '3416',
-      type: 'Villa'
-    },
-    {
-      id: 2,
-      image: '/sdimg2.jpeg',
-      title: 'Seabreeze',
-      price: '$200,000',
-      priceType: '',
-      location: 'East Legon Hills, Katamanso. Accra-Ghana.',
-      bedrooms: 4,
-      bathrooms: 4,
-      area: '3416',
-      type: 'Villa'
-    },
-    {
-      id: 3,
-      image: '/sdimg6.jpeg',
-      title: 'Willow',
-      price: '$200,000',
-      priceType: '',
-      location: 'East Legon Hills, Katamanso. Accra-Ghana.',
-      bedrooms: 4,
-      bathrooms: 4,
-      area: '3416',
-      type: 'Villa'
-    },
-    {
-      id: 4,
-      image: '/sdimg7.jpeg',
-      title: 'Zen',
-      price: '$200,000',
-      priceType: '',
-      location: 'East Legon Hills, Katamanso. Accra-Ghana.',
-      bedrooms: 4,
-      bathrooms: 4,
-      area: '3416',
-      type: 'Villa'
-    },
-    {
-      id: 5,
-      image: '/sdimg8.jpeg',
-      title: 'Tranquility Villas',
-      price: '$200,000',
-      priceType: '/each',
-      location: 'East Legon Hills, Katamanso. Accra-Ghana.',
-      bedrooms: 4,
-      bathrooms: 4,
-      area: '3416',
-      type: 'Villa'
-    },
-    {
-      id: 6,
-      image: '/sdimg09.jpg',
-      title: 'La Catedral',
-      price: '$500,000',
-      priceType: '',
-      location: 'East Legon Hills, Katamanso. Accra-Ghana.',
-      bedrooms: 4,
-      bathrooms: 4,
-      area: '6832',
-      type: 'Villa'
-    }
-  ];
+  // Load properties from JSON file
+  const properties = propertiesData.map(prop => ({
+    id: prop.id,
+    slug: prop.slug,
+    image: prop.mainImage,
+    title: prop.title,
+    price: prop.price,
+    priceType: prop.priceType,
+    location: prop.location,
+    bedrooms: prop.bedrooms,
+    bathrooms: prop.bathrooms,
+    area: prop.area,
+    type: prop.type
+  }));
+
+  // Debug log
+  console.log('Properties loaded:', properties);
 
   const filters = ['All Type','Villa', 'Apartment (Coming Soon)', 'Duplex (Coming Soon)'];
 
@@ -175,7 +120,8 @@ export default function FeaturedProperties() {
           /* Properties Grid - 3 columns, 2 rows */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProperties.map((property, index) => (
-              <div
+              <Link
+                href={`/properties/${property.slug}`}
                 key={property.id}
                 className={`group bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-700 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -236,7 +182,7 @@ export default function FeaturedProperties() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}

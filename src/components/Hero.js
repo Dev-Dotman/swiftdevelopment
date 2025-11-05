@@ -98,7 +98,7 @@ export default function Hero({ showHero }) {
             }`}>
               Own Your <span className="bg-yellow-400/80 text-black px-1 rounded-lg">WORLD,</span><br />
               ONE PROPERTY<br />
-              <span className="text-white-400">AT A TIME</span>
+              <span className="text-white-400">AT A TIME.</span>
             </h1>
           </div>
 

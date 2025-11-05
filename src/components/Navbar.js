@@ -2,13 +2,25 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-export default function Navbar({ onAnimationComplete }) {
+export default function Navbar({ onAnimationComplete = () => {}, skipAnimation = false }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [animationStage, setAnimationStage] = useState('initial');
+  const [animationStage, setAnimationStage] = useState(skipAnimation ? 'complete' : 'initial');
   const hasStarted = useRef(false);
 
   useEffect(() => {
+    // Reset hasStarted when skipAnimation changes
+    if (!skipAnimation) {
+      hasStarted.current = false;
+    }
+  }, [skipAnimation]);
+
+  useEffect(() => {
+    if (skipAnimation) {
+      onAnimationComplete();
+      return;
+    }
+
     if (hasStarted.current) return;
     hasStarted.current = true;
 
@@ -32,13 +44,15 @@ export default function Navbar({ onAnimationComplete }) {
     // Stage 4: Complete animation and notify parent
     timeouts.push(setTimeout(() => {
       setAnimationStage('complete');
-      onAnimationComplete();
+      if (onAnimationComplete && typeof onAnimationComplete === 'function') {
+        onAnimationComplete();
+      }
     }, 4500));
 
     return () => {
       timeouts.forEach(timeout => clearTimeout(timeout));
     };
-  }, [onAnimationComplete]);
+  }, [onAnimationComplete, skipAnimation]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,10 +90,12 @@ export default function Navbar({ onAnimationComplete }) {
 
   return (
     <>
-      {/* Black background overlay - fades out early to show hero */}
-      <div className={`fixed inset-0 z-[99] bg-black transition-opacity duration-500 ${
-        animationStage === 'initial' ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      }`} />
+      {/* Black background overlay - only show if not skipping animation */}
+      {!skipAnimation && (
+        <div className={`fixed inset-0 z-[99] bg-transparent transition-opacity duration-500 ${
+          animationStage === 'initial' ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`} />
+      )}
 
       {/* Navbar that animates and stays */}
       <div className={`fixed z-[100] top-0 left-0 right-0 flex justify-center ${
