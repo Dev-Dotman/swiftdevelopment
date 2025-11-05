@@ -28,7 +28,7 @@ export default function AboutUs() {
 
   return (
     <section ref={sectionRef} id="about" className="py-20 bg-white">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Decorative Header */}
         <div
           className={`flex items-center justify-center mb-12 transition-all duration-700 ${
@@ -51,12 +51,19 @@ export default function AboutUs() {
           }`}
         >
           <h2 className="text-4xl md:text-3xl font-normal text-black leading-relaxed mb-8">
-            We are committed to{" "}
-            <span className="text-gray-500 font-light">delivering an effortless</span>{' '}
-            and enjoyable real estate journey for all our clients. Our platform combines a{' '}
-            <span className="text-gray-500 font-light">sleek, minimalistic design</span>{' '}
-            with cutting-edge functionality, making the property search process{' '}
-            <span className="text-gray-500 font-light">seamless and stress-free.</span>
+            As developers, we are dedicated to{" "}
+            <span className="text-gray-500 font-light">
+              building modern homes that elevate everyday living.
+            </span>{' '}
+            We combine minimal contemporary design with{' '}
+            <span className="text-gray-500 font-light">
+              quality materials and smart functionality,
+            </span>{' '}
+            ensuring every space delivers comfort, calm, and long-term value. Our goal is to make{' '}
+            <span className="text-gray-500 font-light">
+              owning a beautiful home simple, seamless, and stress-free
+            </span>{' '}
+            for every client.
           </h2>
         </div>
       </div>

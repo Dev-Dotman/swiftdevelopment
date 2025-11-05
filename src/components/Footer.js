@@ -11,6 +11,22 @@ export default function Footer() {
     setEmail('');
   };
 
+  const handleSmoothScroll = (e, href) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      const navbarHeight = 80;
+      const targetPosition = targetElement.offsetTop - navbarHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const quickLinks = [
     { name: 'About Us', href: '#about' },
     { name: 'Properties', href: '#properties' },
@@ -144,7 +160,8 @@ export default function Footer() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-yellow-400 transition-colors text-sm flex items-center gap-2 group"
+                    onClick={(e) => handleSmoothScroll(e, link.href)}
+                    className="text-gray-400 hover:text-yellow-400 transition-colors text-sm flex items-center gap-2 group cursor-pointer"
                   >
                     <span className="w-0 h-0.5 bg-yellow-400 group-hover:w-4 transition-all duration-300"></span>
                     {link.name}

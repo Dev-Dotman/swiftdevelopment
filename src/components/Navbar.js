@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function Navbar({ onAnimationComplete }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [animationStage, setAnimationStage] = useState('initial'); // initial, appear, moving, expanding, complete
+  const [animationStage, setAnimationStage] = useState('initial');
   const hasStarted = useRef(false);
 
   useEffect(() => {
@@ -50,11 +50,29 @@ export default function Navbar({ onAnimationComplete }) {
 
   const navItems = [
     { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Projects', href: '#properties' },
     { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' }
   ];
+
+  const handleSmoothScroll = (e, href) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      const navbarHeight = 80; // Account for fixed navbar
+      const targetPosition = targetElement.offsetTop - navbarHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+      
+      // Close mobile menu if open
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   return (
     <>
@@ -105,7 +123,8 @@ export default function Navbar({ onAnimationComplete }) {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-black hover:text-yellow-400 text-sm font-medium transition-all duration-300 hover:scale-105"
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
+                  className="text-black hover:text-yellow-400 text-sm font-medium transition-all duration-300 hover:scale-105 cursor-pointer"
                 >
                   {item.name}
                 </a>
@@ -115,7 +134,8 @@ export default function Navbar({ onAnimationComplete }) {
             <div className="hidden md:block">
               <a
                 href="#contact"
-                className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                onClick={(e) => handleSmoothScroll(e, '#contact')}
+                className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
               >
                 Get Quote
               </a>
@@ -148,16 +168,16 @@ export default function Navbar({ onAnimationComplete }) {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-black hover:text-yellow-400 block px-3 py-2 text-base font-medium transition-colors duration-300"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => handleSmoothScroll(e, item.href)}
+                    className="text-black hover:text-yellow-400 block px-3 py-2 text-base font-medium transition-colors duration-300 cursor-pointer"
                   >
                     {item.name}
                   </a>
                 ))}
                 <a
                   href="#contact"
-                  className="bg-yellow-400 hover:bg-yellow-500 text-black block px-3 py-2 text-base font-medium rounded-md mx-3 mt-4 text-center transition-colors duration-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => handleSmoothScroll(e, '#contact')}
+                  className="bg-yellow-400 hover:bg-yellow-500 text-black block px-3 py-2 text-base font-medium rounded-md mx-3 mt-4 text-center transition-colors duration-300 cursor-pointer"
                 >
                   Get Quote
                 </a>

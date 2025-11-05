@@ -56,6 +56,11 @@ body {
   opacity: 0;
 }
 
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Custom Scrollbar for Dropdown */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
@@ -73,4 +78,14 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(250, 204, 21, 0.7);
+}
+
+/* Hide scrollbar for filters */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
